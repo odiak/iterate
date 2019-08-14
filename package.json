@@ -1,13 +1,16 @@
 {
   "name": "@odiak/iterate",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Kaido Iwamoto <h6824.kaido@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/chai": "^4.2.0",
     "@types/mocha": "^5.2.7",
