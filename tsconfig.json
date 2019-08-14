@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["dom", "es2015", "es2016", "es2017", "es2018"],
+    "strict": true,
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "outDir": "./dist"
+  },
+  "include": ["src"],
+  "exclude": ["src/**/**.spec.ts"]
+}
