@@ -1,6 +1,6 @@
 {
   "name": "@odiak/iterate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "author": "Kaido Iwamoto <h6824.kaido@gmail.com>",
   "license": "MIT",
