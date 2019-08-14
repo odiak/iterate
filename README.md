@@ -22,7 +22,7 @@ for (const s of wrapped) {
 const x = range(10)
   .filter((n) => n % 2 !== 0)
   .map((n) => n ** 2)
-  .reduce((s, n) => s + n)
+  .reduce((s, n) => s + n, 0)
 
 console.log(x)
 // -> 165 is printed
