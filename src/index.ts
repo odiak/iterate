@@ -17,11 +17,11 @@ export class IterableWrapper<T> {
     forEach(this.iterable, f)
   }
 
-  map<U>(f: (_: T) => U): Iterable<U> {
+  map<U>(f: (_: T) => U): IterableWrapper<U> {
     return new IterableWrapper(map(this.iterable, f))
   }
 
-  filter(f: (_: T) => boolean): Iterable<T> {
+  filter(f: (_: T) => boolean): IterableWrapper<T> {
     return new IterableWrapper(filter(this.iterable, f))
   }
 
