@@ -37,8 +37,11 @@ describe('iterate()', () => {
     expect([...iterate(seq())]).to.deep.equal([1, 1, 2, 3, 5])
   })
 
-  it('provide some methods', () => {
+  it('map()', () => {
     expect([...iterate(seq()).map(String)]).to.deep.equal(['1', '1', '2', '3', '5'])
+  })
+
+  it('filter()', () => {
     expect([...iterate(seq()).filter((n) => n % 2 === 0)]).to.deep.equal([2])
   })
 })
