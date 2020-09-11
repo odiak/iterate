@@ -18,11 +18,11 @@ export class IterableWrapper<T> {
   }
 
   map<U>(f: (_: T) => U): IterableWrapper<U> {
-    return new IterableWrapper(map(this.iterable, f))
+    return new IterableWrapper(makeIterable(() => map(this.iterable, f)))
   }
 
   filter(f: (_: T) => boolean): IterableWrapper<T> {
-    return new IterableWrapper(filter(this.iterable, f))
+    return new IterableWrapper(makeIterable(() => filter(this.iterable, f)))
   }
 
   reduce<U>(f: (a: U, b: T) => U, initialValue: U): U {
@@ -36,24 +36,22 @@ function forEach<T>(iterable: Iterable<T>, f: (_: T) => void) {
   }
 }
 
-function map<T, U>(iterable: Iterable<T>, f: (_: T) => U): Iterable<U> {
+function makeIterable<T>(f: () => Iterator<T>): Iterable<T> {
   return {
-    *[Symbol.iterator]() {
-      for (const v of iterable) {
-        yield f(v)
-      }
-    }
+    [Symbol.iterator]: f
   }
 }
 
-function filter<T>(iterable: Iterable<T>, p: (_: T) => boolean): Iterable<T> {
-  return {
-    *[Symbol.iterator]() {
-      for (const v of iterable) {
-        if (p(v)) {
-          yield v
-        }
-      }
+function* map<T, U>(iterable: Iterable<T>, f: (_: T) => U): Iterator<U> {
+  for (const v of iterable) {
+    yield f(v)
+  }
+}
+
+function* filter<T>(iterable: Iterable<T>, p: (_: T) => boolean): Iterator<T> {
+  for (const v of iterable) {
+    if (p(v)) {
+      yield v
     }
   }
 }
