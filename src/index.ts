@@ -28,6 +28,14 @@ export class IterableWrapper<T> {
   reduce<U>(f: (a: U, b: T, i: number) => U, initialValue: U): U {
     return reduce(this.iterable, f, initialValue)
   }
+
+  every(f: (_: T, i: number) => boolean): boolean {
+    return every(this.iterable, f)
+  }
+
+  some(f: (_: T, i: number) => boolean): boolean {
+    return some(this.iterable, f)
+  }
 }
 
 function forEach<T>(iterable: Iterable<T>, f: (_: T, i: number) => void) {
@@ -70,6 +78,27 @@ function reduce<T, U>(iterable: Iterable<T>, f: (a: U, b: T, i: number) => U, in
     i++
   }
   return a
+}
+
+function every<T>(iterable: Iterable<T>, f: (_: T, i: number) => boolean): boolean {
+  let i = 0
+  for (const v of iterable) {
+    if (!f(v, i)) {
+      return false
+    }
+    i++
+  }
+  return true
+}
+
+function some<T>(iterable: Iterable<T>, f: (_: T, i: number) => boolean): boolean {
+  let i = 0
+  for (const v of iterable) {
+    if (f(v, i)) {
+      return true
+    }
+  }
+  return false
 }
 
 export function iterate<T>(iterable: Iterable<T>): IterableWrapper<T> {

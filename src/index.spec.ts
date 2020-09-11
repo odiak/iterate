@@ -44,4 +44,14 @@ describe('iterate()', () => {
   it('filter()', () => {
     expect([...iterate(seq()).filter((n) => n % 2 === 0)]).to.deep.equal([2])
   })
+
+  it('every()', () => {
+    expect(iterate(seq()).every((n) => n < 10)).to.deep.equal(true)
+    expect(iterate(seq()).every((n) => n < 3)).to.deep.equal(false)
+  })
+
+  it('some()', () => {
+    expect(iterate(seq()).some((n) => n > 3)).to.deep.equal(true)
+    expect(iterate(seq()).some((n) => n < 0)).to.deep.equal(false)
+  })
 })
