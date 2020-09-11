@@ -36,22 +36,28 @@ describe('iterate()', () => {
   it('returns wrapped iterable', () => {
     expect([...iterate(seq())]).to.deep.equal([1, 1, 2, 3, 5])
   })
+})
+
+describe('methods', () => {
+  function iter() {
+    return iterate([1, 1, 2, 3, 5])
+  }
 
   it('map()', () => {
-    expect([...iterate(seq()).map(String)]).to.deep.equal(['1', '1', '2', '3', '5'])
+    expect([...iter().map(String)]).to.deep.equal(['1', '1', '2', '3', '5'])
   })
 
   it('filter()', () => {
-    expect([...iterate(seq()).filter((n) => n % 2 === 0)]).to.deep.equal([2])
+    expect([...iter().filter((n) => n % 2 === 0)]).to.deep.equal([2])
   })
 
   it('every()', () => {
-    expect(iterate(seq()).every((n) => n < 10)).to.deep.equal(true)
-    expect(iterate(seq()).every((n) => n < 3)).to.deep.equal(false)
+    expect(iter().every((n) => n < 10)).to.deep.equal(true)
+    expect(iter().every((n) => n < 3)).to.deep.equal(false)
   })
 
   it('some()', () => {
-    expect(iterate(seq()).some((n) => n > 3)).to.deep.equal(true)
-    expect(iterate(seq()).some((n) => n < 0)).to.deep.equal(false)
+    expect(iter().some((n) => n > 3)).to.deep.equal(true)
+    expect(iter().some((n) => n < 0)).to.deep.equal(false)
   })
 })
