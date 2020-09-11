@@ -51,13 +51,17 @@ describe('methods', () => {
     expect([...iter().filter((n) => n % 2 === 0)]).to.deep.equal([2])
   })
 
+  it('reduce()', () => {
+    expect(iter().reduce((a, b) => a + b, 0)).to.equal(12)
+  })
+
   it('every()', () => {
-    expect(iter().every((n) => n < 10)).to.deep.equal(true)
-    expect(iter().every((n) => n < 3)).to.deep.equal(false)
+    expect(iter().every((n) => n < 10)).to.equal(true)
+    expect(iter().every((n) => n < 3)).to.equal(false)
   })
 
   it('some()', () => {
-    expect(iter().some((n) => n > 3)).to.deep.equal(true)
-    expect(iter().some((n) => n < 0)).to.deep.equal(false)
+    expect(iter().some((n) => n > 3)).to.equal(true)
+    expect(iter().some((n) => n < 0)).to.equal(false)
   })
 })
